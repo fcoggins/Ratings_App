@@ -1,0 +1,24 @@
+<html>
+<head>
+<style>
+.usertable {
+    height: 500px;
+    overflow: scroll;
+}
+</style>
+
+
+</head> 
+<h1>Reviews by User</h1>
+User = {{ user.id }} Email = {{ user.email }}
+<div class = "usertable">
+<table>
+<TR><td>Movie </td><td>Title</td><td>Rating</td></TR>
+{% for rating in user.ratings %}
+<tr><td>{{ rating.movie_id }}</td><td>{{ rating.movie.title }}</td><td>{{ rating.rating }}</td></tr>
+
+{% endfor %}
+
+</table>
+</div>
+</html>

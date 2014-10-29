@@ -3,9 +3,12 @@ import model, json
 app = Flask(__name__)
 app.secret_key = '\xf5!\x07!qj\xa4\x08\xc6\xf8\n\x8a\x95m\xe2\x04g\xbb\x98|U\xa2f\x03'
 
-
 @app.route("/")
 def index():
+    return render_template("index.html")
+
+@app.route("/userlist")
+def userlist():
     user_list = model.session.query(model.User).limit(5).all()
     return render_template("user_list.html", user_list=user_list)
 
@@ -57,14 +60,24 @@ def process_login():
             #passwords match store in session
             session['userid'] = user.id
             print session['userid']
-            return redirect("/")
+            return redirect("userreviews/"+str(user.id))
 
 @app.route("/viewusers")
 def viewusers():
 
-    v = model.session.query(model.User).limit(5).all()
+    v = model.session.query(model.User).limit(200).all()
     return render_template("user_list.html", user_list=v)
 
+@app.route("/movielist")
+def viewmovies():
+
+    v = model.session.query(model.Movie).limit(200).all()
+    return render_template("movielist.html", movie_list=v)
+
+@app.route("/addrating")
+def rate():
+
+    return "This is the ratings page"
 
 
 
