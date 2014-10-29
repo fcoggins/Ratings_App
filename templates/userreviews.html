@@ -15,7 +15,7 @@ User = {{ user.id }} Email = {{ user.email }}
 <table>
 <TR><td>Movie </td><td>Title</td><td>Rating</td></TR>
 {% for rating in user.ratings %}
-<tr><td>{{ rating.movie_id }}</td><td>{{ rating.rating }}</td><td>{{ rating.rating }}</td></tr>
+<tr><td>{{ rating.movie_id }}</td><td>{{ rating.movie.title }}</td><td>{{ rating.rating }}</td></tr>
 
 {% endfor %}
 
