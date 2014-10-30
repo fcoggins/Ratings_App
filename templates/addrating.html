@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block body %}
+<h1>Please Enter Your Rating for: {{ movie.title }}</h1>
+<form method="POST" action="/postrating">
+    <input type="text" name="rating" placeholder="Please enter your rating:"  />
+    <input type="hidden" name="movieid" value="{{ movie.id }}" />
+    <button type="btn btn-lg btn-primary btn-block" type="submit">Add Rating</button>
+</form>
+
+
+<h2>Movie Ratings</h2>
+{% for rating in movie.ratings %}
+<p>User: {{ rating.user_id }} rated this movie a: {{ rating.rating }}</p>
+{% endfor %}
+{% endblock %}

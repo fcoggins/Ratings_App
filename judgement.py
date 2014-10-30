@@ -74,10 +74,7 @@ def viewmovies():
     v = model.session.query(model.Movie).limit(200).all()
     return render_template("movielist.html", movie_list=v)
 
-@app.route("/addrating")
-def rate():
 
-    return "This is the ratings page"
 
 
 
@@ -87,6 +84,27 @@ def viewreviews(id):
     user = model.session.query(model.User).filter_by(id=userid).one()
     ratings = user.ratings
     return render_template("userreviews.html", user=user)
+
+@app.route("/addrating/<movieid>")
+def rate(movieid):
+    movie=model.session.query(model.Movie).filter_by(id=movieid).one()
+    return render_template("addrating.html", movie=movie)
+    pass
+
+@app.route("/postrating", methods=['POST', 'GET'])
+def postrating():
+    userid=session.get('userid')
+    movieid=request.form['movieid']
+    ratingvalue = request.form['rating']
+    #print rating
+    rating = model.Rating()
+    rating.rating = ratingvalue
+    rating.user_id = userid
+    rating.movie_id = movieid
+    print rating.rating, rating.user_id, rating.movie_id
+    model.session.add(rating)
+    model.session.commit()
+    return "Hello"#redirect("/movielist")
 
 @app.route("/sessionclear")
 def clear_session():

@@ -21,11 +21,12 @@ $(document).ready(function(){
     $('#nicer').DataTable();
 });
 </script>   
-
+<h1>List of All Users</h1>
 <table id="nicer" class="table table-striped table-bordered" cellspacing="0" width="100%">
-<thead><TR><th>User #</th><th>Email </th> <th>AGE </th><th>Ratings|length</th></TR></thead>
+<thead><TR><th>User #</th><th>Email Address</th> <th>Age </th><th>Number of Ratings</th></TR></thead>
+<tbody>
 {% for user in user_list %}
-<tbody><tr><td><a href="/userreviews/{{user.id}}">{{ user.id }}</a></td><td>{{ user.email }}</td><td>{{ user.age }}</td><td>{{ user.ratings|length }}</td></tr>
+<tr><td><a href="/userreviews/{{user.id}}">{{ user.id }}</a></td><td>{{ user.email }}</td><td>{{ user.age }}</td><td>{{ user.ratings|length }}</td></tr>
 {% endfor %}
 </tbody>
 </table>

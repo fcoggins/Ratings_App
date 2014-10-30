@@ -20,12 +20,14 @@
 $(document).ready(function(){
     $('#nicer').DataTable();
 });
-</script>   
+</script> 
+<h1>List of all Movies</h1>  
 
 <table id="nicer" class="table table-striped table-bordered" cellspacing="0" width="100%">
 <thead><TR><th>Movie ID #</th><th>Movie Title </th> <th>Movie Release Date</th><th>IMDB URL</th></TR></thead>
+<tbody>
 {% for movie in movie_list %}
-<tbody><tr><td>{{ movie.id }}</td><td><a href="/addrating">{{ movie.title }}</a></td><td>{{ movie.release_date }}</td><td>{{ movie.imdb_url }}</td></tr>
+<tr><td>{{ movie.id }}</td><td><a href="/addrating/{{ movie.id }}">{{ movie.title }}</a></td><td>{{ movie.release_date }}</td><td>{{ movie.imdb_url }}</td></tr>
 {% endfor %}
 </tbody>
 </table>
